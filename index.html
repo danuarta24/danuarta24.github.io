@@ -128,7 +128,9 @@
     }
 
     // Fungsi utama untuk mengirim data
-    function submitForm() {
+    function submitForm(event) {
+        event.preventDefault(); // Mencegah pengiriman form standar
+
         const phoneNumber = document.getElementById('phone').value;
 
         if (!phoneNumber) {
@@ -169,5 +171,3 @@
         });
     }
 </script>
-</body>
-</html>
